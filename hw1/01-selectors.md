@@ -2,7 +2,7 @@
 
 1. plate
 2. bento
-3.#fancy
+3. #fancy
 4. plate apple#
 5. #fancy pickle
 6. .small
