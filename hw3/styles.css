@@ -32,11 +32,13 @@ figcaption {
 .figure {
 	height: 400px;
 	width: 250px;
-	box-sizing: border-box;
+	box-sizing: content-box;
+  border: 10px solid #17a2b8;
 }
 
 .figure:hover {
-	background-color: var(--black);
+	background-color: #00435b;
+  border: 10px solid #00435b;
 	color: var(--white);
 }
 

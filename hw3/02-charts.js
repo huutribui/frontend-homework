@@ -29,17 +29,42 @@ const borderColors = [
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-const renderChart = () => {
+const fetchData = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
+
+const countCharactersByHouse = (characters) => {
+  const houses = {};
+  characters.forEach((character) => {
+    let house = character.family;
+    house = house.replace("House ", "");
+    if (house === '' || house === 'None' || house === 'Unkown') house = 'Unknown';
+    else if (house === 'Targaryan' || house === 'Worm' || house === 'Naathi' || house === 'Naharis') house = 'Targaryen';
+    else if (house === 'Lanister' || house === 'Qyburn') house = 'Lannister';
+    else if (house === 'Lorathi') house = 'Lorath';
+    else if (house === 'Sand' || house === 'Viper') house = 'Martell';
+    if (!houses[house]) {
+      houses[house] = 1;
+    } else {
+      houses[house]++;
+    }
+  });
+  return houses;
+};
+
+const renderChart = (data) => {
   const donutChart = document.querySelector('.donut-chart');
 
   new Chart(donutChart, {
     type: 'doughnut',
     data: {
-      labels: ['label', 'label', 'label', 'label'],
+      labels: Object.keys(data),
       datasets: [
         {
-          label: 'My First Dataset',
-          data: [1, 12, 33, 5],
+          label: 'Members of House',
+          data: Object.values(data),
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
@@ -49,4 +74,11 @@ const renderChart = () => {
   });
 };
 
-renderChart();
+const init = async () => {
+  const characters = await fetchData();
+  const characterCounts = countCharactersByHouse(characters);
+  renderChart(characterCounts);
+};
+
+init();
+
