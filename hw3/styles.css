@@ -1,0 +1,52 @@
+:root {
+  --black: #020202;
+  --white: #ffffff;
+  --blue: #00425c;
+  --cyan: #17a2b8;
+}
+
+body {
+  background-color: var(--cyan);
+}
+
+h1 {
+  text-align: center;
+}
+
+.donut-chart {
+  border-radius: 0.8rem;
+  background-color: var(--white);
+}
+
+figcaption {
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+#loading {
+	width: 80px;
+	height: 80px;
+}
+
+.figure {
+	height: 400px;
+	width: 250px;
+	box-sizing: content-box;
+  border: 10px solid #17a2b8;
+}
+
+.figure:hover {
+	background-color: #00435b;
+  border: 10px solid #00435b;
+	color: var(--white);
+}
+
+.d-flex {
+	gap: 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size:  18px;
+}
